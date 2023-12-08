@@ -93,23 +93,9 @@ async function deleteItemById(id) {
 
 async function getAllWorkouts(id) {
   try {
-    return await Model.findById(id).Workout.find();
+    return await Workout.find().where('userID').in(id);
   } catch (err) {
     throw new Error(err)
-  }
-}
-
-async function getAllWorkoutsByUserId(req, res) {
-  try {
-    const application = await Application.findOne({ _id: req.params.applicationId });
-
-    if (!application) {
-      return res.status(404).json({ message: 'No application with that ID' });
-    }
-
-    res.json(application);
-  } catch (err) {
-    res.status(500).json(err);
   }
 }
 

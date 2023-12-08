@@ -97,17 +97,11 @@ async function getAllWorkouts(id) {
   }
 }
 
-async function getAllWorkoutsByUserId(req, res) {
+async function getAllWorkouts(id) {
   try {
-    const application = await Application.findOne({ _id: req.params.applicationId });
-
-    if (!application) {
-      return res.status(404).json({ message: 'No application with that ID' });
-    }
-
-    res.json(application);
+    return await Workout.find().where('userID').in(id);
   } catch (err) {
-    res.status(500).json(err);
+    throw new Error(err)
   }
 }
 

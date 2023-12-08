@@ -10,6 +10,7 @@ const {
   updateUserById, 
   deleteUserById, 
   authenticate, 
+  getAllWorkouts,
   verifyUser 
 } = require('../../controllers/user.controller');
 
@@ -102,6 +103,15 @@ router.delete("/:id", async (req, res) => {
     res.status(200).json({ result: "success", payload })
   } catch(err){
     res.status(500).json({ result: "error", payload: err.message })
+  }
+})
+
+router.get("/:id/workouts", async (req, res) => {
+  try {
+    const payload = await getAllWorkouts(req.params.id)
+    res.status(200).json({ result: "success", payload })
+  } catch (err) {
+    res.status(500).json({result: "error", payload: err.message})
   }
 })
 

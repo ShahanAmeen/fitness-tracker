@@ -136,28 +136,36 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
   console.log('connected');
 
-  let userCheck = await connection.db.listCollections({ name: 'users' }).toArray();
-  if (userCheck.length) {
-    await connection.dropCollection('users');
-  }
+  // let userCheck = await connection.db.listCollections({ name: 'users' }).toArray();
+  // if (userCheck.length) {
+  //   await connection.dropCollection('users');
+  // }
 
-  let goalCheck = await connection.db.listCollections({ name: 'goals' }).toArray();
-  if (goalCheck.length) {
-    await connection.dropCollection('goals');
-  }
+  // let goalCheck = await connection.db.listCollections({ name: 'goals' }).toArray();
+  // if (goalCheck.length) {
+  //   await connection.dropCollection('goals');
+  // }
 
-  let workoutCheck = await connection.db.listCollections({ name: 'workouts' }).toArray();
-  if (workoutCheck.length) {
-    await connection.dropCollection('workouts');
-  }
+  // let workoutCheck = await connection.db.listCollections({ name: 'workouts' }).toArray();
+  // if (workoutCheck.length) {
+  //   await connection.dropCollection('workouts');
+  // }
 
-  await User.collection.insertMany(users);
-  await Goal.collection.insertMany(goals);
-  await Workout.collection.insertMany(workouts);
+  await User.deleteMany()
+  await Goal.deleteMany()
+  await Workout.deleteMany()
 
-  console.table(users);
-  console.table(goals);
-  console.table(workouts);
+  const usersSeeds = await User.insertMany(users);
+  const goalsSeeds = await Promise.all(goals.map(async (goal, index) => {
+    return await Goal.create({...goal, userID: usersSeeds[index]._id});
+  }))
+  const workoutsSeeds = await Promise.all(workouts.map(async (workout, index) => {
+    return await Workout.create({...workout, userID: usersSeeds[index]._id});
+  }))
+  
+  console.log(usersSeeds);
+  console.log(goalsSeeds);
+  console.log(workoutsSeeds);
   console.info('Seeding successfuly completed')
   process.exit(0);
 });

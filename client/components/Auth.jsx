@@ -6,7 +6,7 @@ export default function Auth({usage="signup"}){
 
   const appCtx = useAppCtx()
 
-  const [ userData, setUserData ] = useState({ email: "", password: "" })
+  const [ userData, setUserData ] = useState({ email: "", password: "", firstname: '', lastname: '', height: 0, weight: 0, gender: '', totalCalories: 0, bmi: 0.0})
 
   function handleInputChange(e){
     setUserData({...userData, [e.target.name]: e.target.value })

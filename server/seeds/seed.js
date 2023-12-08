@@ -1,4 +1,4 @@
-const db = require("../config/connection")
+const connection = require("../config/connection")
 
 /*
   To seed data:
@@ -81,7 +81,6 @@ weightLoss:5,
 weightGain:0,
 bmi:22,
 totalCaloriesGoal:350,
-userId:0,
 
 },
 {
@@ -89,21 +88,18 @@ weightLoss: 10,
 weightGain: 0,
 bmi: 25,
 totalCaloriesGoal:500,
-userId,
 },
 {
 weightLoss: 0,
 weightGain: 15,
 bmi: 28,
 totalCaloriesGoal:500,
-userId,
 },
 {
 weightLoss: 30,
 weightGain: 0,
 bmi: 22,
 totalCaloriesGoal:300,
-userId,
 },
 ];
 
@@ -112,32 +108,27 @@ const workouts =
   exerciseType:"bench",
   caloriesBurnt:100,
   afterWorkoutWeight:181,
-  userID:9,
 },
 {
   exerciseType: "sqaut",
   caloriesBurnt: 150,
   afterWorkoutWeight: 200,
-  userID: 9,
 },
 {
   exerciseType: "dumbbell-rows",
   caloriesBurnt: 100,
   afterWorkoutWeight: 202,
-  userID: 9,
 },
   {
   exerciseType: "3mile-tredmill",
   caloriesBurnt: 398,
   afterWorkoutWeight: 170,
-  userID: 9,
 
 },
 {
   exerciseType: "box-jump",
   caloriesBurnt: 200,
   afterWorkoutWeight: 181,
-  userID: 9,
 }]
 
 connection.on('error', (err) => err);

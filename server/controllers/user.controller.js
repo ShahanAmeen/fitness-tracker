@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Workout, Goal } = require('../models');
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 require("dotenv").config();
@@ -89,14 +89,26 @@ async function deleteItemById(id) {
   }
 }
 
-async function getAllWorkouts(req, res) {
-  try{
-    const user = await User.findOne({_id: req.params.id})
-    if (!user){
-      return res.status(404).JSON({message:"no user with this ID"})
+async function getAllWorkouts(id) {
+  try {
+    return await Model.findById(id).Workout.find();
+  } catch (err) {
+    throw new Error(err)
+  }
+}
 
-    }res.JSON
-  }  
+async function getAllWorkoutsByUserId(req, res) {
+  try {
+    const application = await Application.findOne({ _id: req.params.applicationId });
+
+    if (!application) {
+      return res.status(404).json({ message: 'No application with that ID' });
+    }
+
+    res.json(application);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 }
 
 module.exports = {
@@ -105,6 +117,7 @@ module.exports = {
   createUser: createItem,
   updateUserById: updateItemById,
   deleteUserById: deleteItemById,
+  getAllWorkouts,
   authenticate,
   verifyUser
 }

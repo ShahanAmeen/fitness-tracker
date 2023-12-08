@@ -18,7 +18,7 @@ const goalSchema = new mongoose.Schema(
       type: Number,
     },
     userID: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: 'User',
     },
   },

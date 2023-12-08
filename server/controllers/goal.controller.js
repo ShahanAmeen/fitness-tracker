@@ -50,5 +50,5 @@ module.exports = {
   getGoalById: getItemById,
   createGoal: createItem,
   updateGoalById: updateItemById,
-
+  deleteGoalById: deleteItemById,
 }

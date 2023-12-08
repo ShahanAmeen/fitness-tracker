@@ -16,7 +16,7 @@ const workoutSchema = new mongoose.Schema(
       required: true,
     },
     userID: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: 'User',
     },
   },

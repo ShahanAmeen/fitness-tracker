@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 // import { useAppCtx } from "../utils/AppProvider"
 
 
-export default function Auth({login}){
+export default function Auth(){
 
   // const appCtx = useAppCtx()
 
@@ -12,9 +12,13 @@ export default function Auth({login}){
     setUserData({...userData, [e.target.name]: e.target.value })
   }
 
+  // need to make sure no fields are blank when submitting form (add checks later)
   async function handleFormSubmit(e){
     e.preventDefault()
-    const finalPath = `/api/users/auth`
+    const finalPath = `/api/users`
+
+    const calcBMI = (720*userData.weight)/(userData.height)
+    setUserData({...userData, bmi: calcBMI})    
 
     try {
       const query = await fetch(finalPath, {
@@ -27,6 +31,7 @@ export default function Auth({login}){
       const response = await query.json()
       console.log(response)
       if( response.result === "success" ){
+        // clarify what the homepage or '/' is later with group
         window.location.href = "/"
       }
     } catch(err){
@@ -43,7 +48,7 @@ export default function Auth({login}){
     <div>
       <form onSubmit={handleFormSubmit}>
         <div>
-          <h2> Login </h2>
+          <h2>Signup</h2>
           <div>
             <div>
               <label className="d-block">Email Address</label>
@@ -54,11 +59,38 @@ export default function Auth({login}){
               <label className="d-block">Password</label>
               <input type="password" name="password" value={userData.password} onChange={handleInputChange} />
             </div>
+
+            <div>
+              <label className="d-block">First Name</label>
+              <input type="text" name="firstname" value={userData.firstname} onChange={handleInputChange} />
+            </div>
+            
+            <div>
+              <label className="d-block">Last Name</label>
+              <input type="text" name="lastname" value={userData.lastname} onChange={handleInputChange} />
+            </div>
+
+            <div>
+              <label className="d-block">Height (in inches)</label>
+              <input type="number" name="height" value={userData.height} onChange={handleInputChange} />
+            </div>
+
+            <div>
+              <label className="d-block">Weight (in pounds)</label>
+              <input type="number" name="weight" value={userData.weight} onChange={handleInputChange} />
+            </div>
+
+            <div>
+              <label className="d-block">Gender</label>
+              <input type="text" name="gender" value={userData.gender} onChange={handleInputChange} />
+            </div>
           </div>
 
           <button className="mt-2">Submit Info</button>
         </div>
       </form>
+
+      {/* <a href='/login' class='button-style'>Already signed-up? Log in here</a> */}
     </div>
   )
 

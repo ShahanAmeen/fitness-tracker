@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { useAppCtx } from "../utils/AppProvider"
+// import { useAppCtx } from "../utils/AppProvider"
 
 
-export default function Auth({usage="signup"}){
+export default function Auth({login}){
 
-  const appCtx = useAppCtx()
+  // const appCtx = useAppCtx()
 
   const [ userData, setUserData ] = useState({ email: "", password: "" })
 
@@ -14,8 +14,7 @@ export default function Auth({usage="signup"}){
 
   async function handleFormSubmit(e){
     e.preventDefault()
-    const apiPath = (usage === "signup") ? "/" : "/auth"
-    const finalPath = `/api/user${apiPath}`
+    const finalPath = `/api/users/auth`
 
     try {
       const query = await fetch(finalPath, {
@@ -35,16 +34,16 @@ export default function Auth({usage="signup"}){
     }
   }
 
-  useEffect(() => {
-    setUserData({...userData, email: appCtx.user.email || "" })
-  },[appCtx])
+  // useEffect(() => {
+  //   setUserData({...userData, email: appCtx.user.email || "" })
+  // },[appCtx])
 
 
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
         <div>
-          <h2>{ usage === "signup" ? "Signup" : "Login" }</h2>
+          <h2> Login </h2>
           <div>
             <div>
               <label className="d-block">Email Address</label>

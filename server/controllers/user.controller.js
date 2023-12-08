@@ -93,14 +93,6 @@ async function deleteItemById(id) {
 
 async function getAllWorkouts(id) {
   try {
-    return await Model.findById(id).Workout.find();
-  } catch (err) {
-    throw new Error(err)
-  }
-}
-
-async function getAllWorkouts(id) {
-  try {
     return await Workout.find().where('userID').in(id);
   } catch (err) {
     throw new Error(err)

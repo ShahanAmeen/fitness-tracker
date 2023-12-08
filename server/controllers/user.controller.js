@@ -89,6 +89,16 @@ async function deleteItemById(id) {
   }
 }
 
+async function getAllWorkouts(req, res) {
+  try{
+    const user = await User.findOne({_id: req.params.id})
+    if (!user){
+      return res.status(404).JSON({message:"no user with this ID"})
+
+    }res.JSON
+  }  
+}
+
 module.exports = {
   getAllUsers: getAllItems,
   getUserById: getItemById,

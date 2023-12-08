@@ -29,11 +29,13 @@ async function authenticate(data){
     throw new Error(err)
   }
 
+  console.log(user)
   if(!user) throw new Error("No user found")
 
   let userIsOk = false
   try {
     userIsOk = await bcrypt.compare( data.password, user.password )
+    console.log(userIsOk)
   } catch(err){
     console.log(err)
     throw new Error(err)

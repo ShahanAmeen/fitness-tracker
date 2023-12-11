@@ -11,7 +11,8 @@ const {
   deleteUserById, 
   authenticate, 
   getAllWorkouts,
-  verifyUser 
+  verifyUser, 
+  getAllGoals
 } = require('../../controllers/user.controller');
 
 
@@ -44,6 +45,7 @@ router.get("/", async (req, res) => {
 
 
 router.get("/verify", async (req, res) => {
+  console.log('hit the route')
   const user = await verifyUser(req)
   if( !user ){
     res.status(401).json({ result: "invalid login" })
@@ -112,6 +114,14 @@ router.get("/:id/workouts", async (req, res) => {
     res.status(200).json({ result: "success", payload })
   } catch (err) {
     res.status(500).json({result: "error", payload: err.message})
+  }
+})
+router.get("/:id/goals", async (req, res) => {
+  try {
+    const payload = await getAllGoals(req.params.id)
+    res.status(200).json({ result: "success", payload })
+  } catch (err) {
+    res.status(500).json({ result: "error", payload: err.message })
   }
 })
 

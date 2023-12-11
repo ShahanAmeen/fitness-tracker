@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-// import { useAppCtx } from "../utils/AppProvider"
+import { useAppCtx } from "../utils/AppProvider"
 
 
 export default function Auth(){
 
-  // const appCtx = useAppCtx()
+  const appCtx = useAppCtx()
 
   const [ userData, setUserData ] = useState({ email: "", password: "", firstname: '', lastname: '', height: 0, weight: 0, gender: '', totalCalories: 0, bmi: 0.0})
 
@@ -33,15 +33,16 @@ export default function Auth(){
       if( response.result === "success" ){
         // clarify what the homepage or '/' is later with group
         window.location.href = "/"
+        console.log('success')
       }
     } catch(err){
       console.log(err.message)
     }
   }
 
-  // useEffect(() => {
-  //   setUserData({...userData, email: appCtx.user.email || "" })
-  // },[appCtx])
+  useEffect(() => {
+    setUserData({...userData, email: appCtx.user.email || "" })
+  },[appCtx])
 
 
   return (

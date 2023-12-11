@@ -6,6 +6,7 @@ require("dotenv").config();
 const Model = User; 
 
   async function verifyUser(req){
+    console.log('we hit verifyUser')
     const cookie = req.cookies["auth-cookie"]
     if( !cookie ) return false 
 
@@ -98,8 +99,15 @@ async function getAllWorkouts(id) {
     throw new Error(err)
   }
 }
-
+async function getAllGoals(id) {
+  try {
+    return await Goal.find().where('userID').in(id);
+  } catch (err) {
+    throw new Error(err)
+  }
+}
 module.exports = {
+  getAllGoals: getAllGoals,
   getAllUsers: getAllItems,
   getUserById: getItemById,
   createUser: createItem,

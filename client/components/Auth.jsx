@@ -14,7 +14,8 @@ export default function Auth({login}){
 
   async function handleFormSubmit(e){
     e.preventDefault()
-    const finalPath = `/api/users/auth`
+    const apiPath = (usage === "signup") ? "/" : "/auth"
+    const finalPath = `/api/user${apiPath}`
 
     try {
       const query = await fetch(finalPath, {

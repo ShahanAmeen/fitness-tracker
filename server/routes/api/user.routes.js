@@ -45,6 +45,7 @@ router.get("/", async (req, res) => {
 
 
 router.get("/verify", async (req, res) => {
+  console.log('hit the route')
   const user = await verifyUser(req)
   if( !user ){
     res.status(401).json({ result: "invalid login" })

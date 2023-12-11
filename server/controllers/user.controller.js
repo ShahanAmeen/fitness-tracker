@@ -6,6 +6,7 @@ require("dotenv").config();
 const Model = User; 
 
   async function verifyUser(req){
+    console.log('we hit verifyUser')
     const cookie = req.cookies["auth-cookie"]
     if( !cookie ) return false 
 

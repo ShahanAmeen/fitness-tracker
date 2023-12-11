@@ -6,7 +6,7 @@ export default function Auth({usage="signup"}){
 
   const appCtx = useAppCtx()
 
-  const [ userData, setUserData ] = useState({ email: "", password: ""})
+  const [ userData, setUserData ] = useState({ email: "", password: "", firstname: '', lastname: '', height: 0, weight: 0, gender: '', totalCalories: 0, bmi: 0.0})
 
   function handleInputChange(e){
     setUserData({...userData, [e.target.name]: e.target.value })
@@ -15,7 +15,7 @@ export default function Auth({usage="signup"}){
   async function handleFormSubmit(e){
     e.preventDefault()
     const apiPath = (usage === "signup") ? "/" : "/auth"
-    const finalPath = `/api/user${apiPath}`
+    const finalPath = `/api/users${apiPath}`
 
     try {
       const query = await fetch(finalPath, {

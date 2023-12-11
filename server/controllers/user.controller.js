@@ -98,8 +98,15 @@ async function getAllWorkouts(id) {
     throw new Error(err)
   }
 }
-
+async function getAllGoals(id) {
+  try {
+    return await Goal.find().where('userID').in(id);
+  } catch (err) {
+    throw new Error(err)
+  }
+}
 module.exports = {
+  getAllGoals: getAllGoals,
   getAllUsers: getAllItems,
   getUserById: getItemById,
   createUser: createItem,

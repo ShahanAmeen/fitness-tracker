@@ -1,11 +1,12 @@
 import { useEffect, useState, useContext } from "react"
 import { useAppCtx } from "../utils/AppProvider";
+import LineChartDisplay from '../components/LineChart'
 
 
 
 export default function PrivatePage(){
 
-  const {user} = useAppCtx;
+  const {user} = useAppCtx();
 
   let popCheck = false;
 
@@ -15,7 +16,7 @@ export default function PrivatePage(){
 
     try {
       console.log(user)
-      const query = await fetch(`api/users/${user._id}/goals}`)
+      const query = await fetch(`api/users/${user?._id}/goals`)
       const response = await query.json()
       console.log(response)
       if( response.result === "success" ){
@@ -34,23 +35,14 @@ export default function PrivatePage(){
 
   useEffect(() => {
     getGoals()
-  },[])
+  },[user._id])
 
-  useEffect(() => {
-    if(!popCheck){
-      popCheck = true
-    }
-  },[goalDisplay])
-
-
-  return popCheck ? (
+  if( !user?._id ) return <></>
+  return (
     <>
       <h1>Goal Page</h1>
       <p>My BMI goal is {goalDisplay.bmi}</p>
-    </>
-  ) : (
-    <>
-      <p>Waiting for info...</p>
+      <LineChartDisplay />
     </>
   )
 }

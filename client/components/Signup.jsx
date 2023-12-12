@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext, useContext } from "react"
 import { useAppCtx } from "../utils/AppProvider"
 
 
@@ -29,10 +29,11 @@ export default function Auth(){
         }
       })
       const response = await query.json()
+      setUserData(response.payload)
       console.log(response)
       if( response.result === "success" ){
         // clarify what the homepage or '/' is later with group
-        window.location.href = "/"
+        // window.location.href = "/"
         console.log('success')
       }
     } catch(err){

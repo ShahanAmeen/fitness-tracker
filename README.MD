@@ -23,13 +23,13 @@ youtube:
 Shahan Ameen
 gitHub link: https://github.com/ShahanAmeen
 
-Zac
+Zachary Schreier
 gitHub link: https://github.com/ZSchreier
 
-Json
+Jason 
 gitHub link: https://github.com/Jasony95
 
-casey
+casey Doig
 gitHub link: https://github.com/cddoigkn
 
 Yacob Menghistu

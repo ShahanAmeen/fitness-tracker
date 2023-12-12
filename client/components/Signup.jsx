@@ -21,6 +21,7 @@ export default function Auth(){
     setUserData({...userData, bmi: calcBMI})    
 
     try {
+      console.log(userData)
       const query = await fetch(finalPath, {
         method: "POST",
         body: JSON.stringify(userData),
@@ -33,7 +34,7 @@ export default function Auth(){
       console.log(response)
       if( response.result === "success" ){
         // clarify what the homepage or '/' is later with group
-        // window.location.href = "/"
+        window.location.href = "/"
         console.log('success')
       }
     } catch(err){

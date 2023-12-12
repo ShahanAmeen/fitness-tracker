@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-// import { useAppCtx } from "../utils/AppProvider"
+import { useAppCtx } from "../utils/AppProvider"
 
 
-export default function Auth({login}){
+export default function Auth({usage="signup"}){
 
-  // const appCtx = useAppCtx()
+  const appCtx = useAppCtx()
 
   const [ userData, setUserData ] = useState({ email: "", password: "", firstname: '', lastname: '', height: 0, weight: 0, gender: '', totalCalories: 0, bmi: 0.0})
 
@@ -15,7 +15,7 @@ export default function Auth({login}){
   async function handleFormSubmit(e){
     e.preventDefault()
     const apiPath = (usage === "signup") ? "/" : "/auth"
-    const finalPath = `/api/user${apiPath}`
+    const finalPath = `/api/users${apiPath}`
 
     try {
       const query = await fetch(finalPath, {
@@ -35,16 +35,16 @@ export default function Auth({login}){
     }
   }
 
-  // useEffect(() => {
-  //   setUserData({...userData, email: appCtx.user.email || "" })
-  // },[appCtx])
+  useEffect(() => {
+    setUserData({...userData, email: appCtx.user.email || "" })
+  },[appCtx])
 
 
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
         <div>
-          <h2> Login </h2>
+          <h2>{ usage === "signup" ? "Signup" : "Login" }</h2>
           <div>
             <div>
               <label className="d-block">Email Address</label>
@@ -57,7 +57,7 @@ export default function Auth({login}){
             </div>
           </div>
 
-          <button className="mt-2">Submit Info</button>
+          <button className="mt-2">Come on in!</button>
         </div>
       </form>
     </div>

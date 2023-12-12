@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
-import { useAppCtx } from "../utils/AppProvider"
+import { useEffect, useState, useContext } from "react"
+import { useAppCtx } from "../utils/AppProvider";
+
 
 
 export default function PrivatePage(){
 
-  const { user } = useAppCtx()
+  const {user} = useAppCtx;
 
   let popCheck = false;
 
@@ -34,6 +35,12 @@ export default function PrivatePage(){
   useEffect(() => {
     getGoals()
   },[])
+
+  useEffect(() => {
+    if(!popCheck){
+      popCheck = true
+    }
+  },[goalDisplay])
 
 
   return popCheck ? (

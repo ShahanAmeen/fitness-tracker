@@ -19,12 +19,12 @@ export default function AppProvider(props){
     }
     
     try {
-      console.log('we are trying to hit the fetch request')
       const query = await fetch("/api/users/verify")
       const response = await query.json()
+      console.log(response)
       if( response.result === "success" ){
         setUser(response.payload)
-        console.log(response.payload)
+        console.log(user)
       }
     } catch(err){
       if( window.location.pathname !== "" && !window.location.pathname.includes("/auth")) {

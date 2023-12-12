@@ -72,6 +72,7 @@ router.post("/", async (req, res) => {
     const user = await createUser(req.body)
     const token = createToken(user.email, user._id)
     const payload = stripPassword(user)
+    console.log(payload)
     res.cookie("auth-cookie", token).json({ result: "success", payload })
   } catch(err){
     res.status(500).json({ result: "error", payload: err.message })

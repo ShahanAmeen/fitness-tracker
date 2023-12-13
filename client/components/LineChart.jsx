@@ -35,6 +35,15 @@ export default function LineChartDisplay(props) {
   // const dataTest = [{name: 'Page A', uv: 148, pv: 2400, amt: 2400}, {name: 'Page B', uv: 140, pv: 2400, amt: 2400}, {name: 'Page C', uv: 142, pv: 2400, amt: 2400}];
 
   if( !props?.graph ) return <><p>waiting for info...</p></>
+  if( data.length===0 ){
+    return (
+    <>
+      <div className='d-flex mb-5 mt-5'>
+        <h2>Waiting for weight data before displaying graph...</h2>
+      </div>
+    </>
+    )
+  } 
   return (
   <LineChart width={600} height={300} data={data}>
     <Line type="monotone" dataKey="weight" stroke="#8884d8" />

@@ -1,37 +1,63 @@
 import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppProvider";
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+// import Card from 'react-bootstrap/Card';
+// import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
 export default function GoalDisplay() {
 
-  const {user} = useAppCtx;
+  const {user} = useAppCtx();
 
-  const [newGoal, displayNewGoal] = useState({weightLoss: 0, weightGain: 0, totalCalorieGoal: 0,});
+  const [goalData, setGoalData] = useState([]);
+
+  async function getGoals(){
+
+    try {
+      const query = await fetch(`api/users/${user?._id}/goals`)
+      const response = await query.json()
+      if( response.result === "success" ){
+        setGoalData(response.payload)
+      }
+    } catch(err){
+      console.log(err.message)
+    }
+  }
+
+  // async function checkData(){
+  //   if (props.goals.length !== 0){
+  //     console.log(`moving data`)
+  //     console.log(props.goals)
+  //     await moveData()
+
+  //   }
+  // }
   
-  fetch (`/api/user/goals`, {
-    method: "GET",
-    body: JSON.stringify(newGoal), // 
-  }).then(response => response.json())
-  .then(data =>{
-    console.log(data.payload)
-    displayNewGoal(data.payload)
-  })
-  useEffect(()=>{
+  useEffect(() => {
+    getGoals()
+  },[user._id])
 
-  })
-
+  if( !user?._id) return <></>
+  if(goalData.length===0) return <h4>Waiting for goal data...</h4>
   return(
-    <>
-      <Card style={{ width: '18rem' }}>
-      <ListGroup variant="flush">
-        <ListGroup.Item>weightLoss: </ListGroup.Item>
-        <ListGroup.Item>weightGain:</ListGroup.Item>
-        <ListGroup.Item>total Calorie Goal:</ListGroup.Item>
-      </ListGroup>
-    </Card>
-    </>
+    <div className="d-flex justify-content-evenly flex-wrap">
+      <h2>Goals:</h2>
+      {
+        goalData.map(goal =>{
+          return(
+            <div>
+              <div className='card' style={{ width: '18rem' }}>
+                <div className='list-group' variant="flush">
+                  <div className='list-group-item' key="goal.weightLoss">Weight Loss Goal: {goal.weightLoss}</div>
+                  <div className='list-group-item' key="goal.weightGain">Weight Gain Goal: {goal.weightGain}</div>
+                  <div className='list-group-item' key="goal.bmi">BMI Goal: {goal.bmi.$numberDecimal}</div>
+                  <div className='list-group-item' key="goal.totalCalorieGoal">Total Calorie Goal: {goal.totalCalorieGoal}</div>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
   )
 }

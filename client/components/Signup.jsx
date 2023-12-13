@@ -17,7 +17,7 @@ export default function Auth(){
     e.preventDefault()
     const finalPath = `/api/users`
 
-    const calcBMI = (720*userData.weight)/(userData.height)
+    const calcBMI = (720*userData.weight)/(userData.height*userData.height)
     setUserData({...userData, bmi: calcBMI})    
 
     try {

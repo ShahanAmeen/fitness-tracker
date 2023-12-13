@@ -1,6 +1,9 @@
 import { useEffect, useState, useContext } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 import LineChartDisplay from '../components/LineChart'
+import GoalDisplay from "../components/GoalDisplay";
+import WorkoutDisplay from "../components/WorkoutDisplay";
+import {Container, Row, Col} from "react-bootstrap";
 
 
 
@@ -8,9 +11,7 @@ export default function PrivatePage(){
 
   const {user} = useAppCtx();
 
-  let popCheck = false;
-
-  const [goalDisplay, setGoalDisplay] = useState({weightLoss: 0, weightGain: 0, bmi: 20.0, totalCalorieGoal: 0})
+  const [goalDisplay, setGoalDisplay] = useState([])
   
   const [graphDisplay, setGraphDisplay] = useState([])
 
@@ -20,14 +21,9 @@ export default function PrivatePage(){
       const query = await fetch(`api/users/${user?._id}/goals`)
       const response = await query.json()
       if( response.result === "success" ){
-        setGoalDisplay({
-          weightGain: response.weightGain, 
-          weightLoss: response.weightLoss,
-          bmi: response.bmi,
-          totalCalorieGoal: response.totalCalorieGoal
-        })
+        console.log(response.payload)
+        setGoalDisplay(response.payload)
       }
-      popCheck = true
     } catch(err){
       console.log(err.message)
     }
@@ -56,9 +52,20 @@ export default function PrivatePage(){
   if( !user?._id) return <></>
   return (
     <>
-      <h1>Goal Page</h1>
-      <p>My BMI goal is {goalDisplay.bmi}</p>
+      <h1>Weight Chart</h1>
       <LineChartDisplay graph={graphDisplay}/>
+      <Container fluid className="d-flex align-items-center">
+        <Row className="justify-content-evenly">
+          <Col xs={6}>
+            <GoalDisplay />
+          </Col>
+        </Row>
+        <Row className="justify-content-evenly">
+          <Col xs={6}>
+            <WorkoutDisplay />
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

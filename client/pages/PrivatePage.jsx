@@ -17,10 +17,8 @@ export default function PrivatePage(){
   async function getGoals(){
 
     try {
-      console.log(user)
       const query = await fetch(`api/users/${user?._id}/goals`)
       const response = await query.json()
-      console.log(response)
       if( response.result === "success" ){
         setGoalDisplay({
           weightGain: response.weightGain, 
@@ -38,10 +36,8 @@ export default function PrivatePage(){
   async function getWorkouts(){
 
     try {
-      console.log(user)
       const query = await fetch(`api/users/${user?._id}/workouts`)
       const response = await query.json()
-      console.log(response)
       if( response.result === "success" ){
         setGraphDisplay(response.payload)
       }

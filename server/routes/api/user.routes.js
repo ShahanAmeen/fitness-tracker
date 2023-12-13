@@ -1,8 +1,10 @@
+// This file handles the routing for /api/users and makes use of the controller functions
+
 const router = require('express').Router();
 const jwt = require("jsonwebtoken")
 require("dotenv").config();
 
-// Import any controllers needed here
+
 const { 
   getAllUsers, 
   getUserById, 
@@ -17,6 +19,8 @@ const {
 
 
 /*
+Here is the advice given by Gary in the boilerplate, which we are endlessly thankful for
+
 Here we remove the password (even though it's encrypted) from the response.
 This code strips the password from the user object obtained from the controller.
 But in doing so, this will destructure the mongoose object itself, so we apply the 
@@ -33,7 +37,6 @@ function createToken(email, id){
   return jwt.sign({ email: email, id: id }, process.env.JWT_SECRET )
 }
 
-// Declare the routes that point to the controllers above
 router.get("/", async (req, res) => {
   try {
     const payload = await getAllUsers()
@@ -45,7 +48,6 @@ router.get("/", async (req, res) => {
 
 
 router.get("/verify", async (req, res) => {
-  console.log('hit the route')
   const user = await verifyUser(req)
   if( !user ){
     res.status(401).json({ result: "invalid login" })
@@ -72,7 +74,6 @@ router.post("/", async (req, res) => {
     const user = await createUser(req.body)
     const token = createToken(user.email, user._id)
     const payload = stripPassword(user)
-    console.log(payload)
     res.cookie("auth-cookie", token).json({ result: "success", payload })
   } catch(err){
     res.status(500).json({ result: "error", payload: err.message })

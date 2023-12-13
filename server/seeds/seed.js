@@ -1,3 +1,5 @@
+// This is our seed file, which seeds the database for our app. All of the commented code was left in this file for future reference, as the majority of it was left by Jason.
+
 const connection = require("../config/connection")
 
 /*
@@ -15,6 +17,7 @@ const connection = require("../config/connection")
 //   console.log("seeding complete")
 //   process.exit(0)
 // });const connection = require('../config/connection');
+
 const { User, Goal, Workout } = require('../models');
 const bcrypt = require("bcrypt")
 

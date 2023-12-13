@@ -1,9 +1,9 @@
+// This file handles the routing for /api/goals and makes use of the controller functions
+
 const router = require('express').Router();
 
-// Import any controllers needed here
 const { getAllGoals, getGoalById, createGoal, updateGoalById, deleteGoalById } = require('../../controllers/goal.controller');
 
-// Declare the routes that point to the controllers above
 router.get("/", async (req, res) => {
   try {
     const payload = await getAllGoals()

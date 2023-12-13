@@ -1,3 +1,5 @@
+// This file handles the functions used in the goals routes
+
 const { Goal } = require('../models');
 const Model = Goal;
 

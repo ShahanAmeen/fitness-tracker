@@ -16,6 +16,7 @@ const connection = require("../config/connection")
 //   process.exit(0)
 // });const connection = require('../config/connection');
 const { User, Goal, Workout } = require('../models');
+const bcrypt = require("bcrypt")
 
 const users =
 [{
@@ -154,6 +155,10 @@ connection.once('open', async () => {
   await User.deleteMany()
   await Goal.deleteMany()
   await Workout.deleteMany()
+
+  for(x=0; x<users.length; x++){
+    users[x].password = await bcrypt.hash(users[x].password, 10)
+  }
 
   const usersSeeds = await User.insertMany(users);
   const goalsSeeds = await Promise.all(goals.map(async (goal, index) => {

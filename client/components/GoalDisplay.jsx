@@ -38,8 +38,9 @@ export default function GoalDisplay() {
   },[user._id])
 
   if( !user?._id) return <></>
+  if(goalData.length===0) return <h4>Waiting for goal data...</h4>
   return(
-    <div>
+    <div className="d-flex justify-content-evenly flex-wrap">
       <h2>Goals:</h2>
       {
         goalData.map(goal =>{

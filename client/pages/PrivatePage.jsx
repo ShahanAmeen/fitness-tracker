@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 import LineChartDisplay from '../components/LineChart'
 import GoalDisplay from "../components/GoalDisplay";
+import WorkoutDisplay from "../components/WorkoutDisplay";
+import {Container, Row, Col} from "react-bootstrap";
 
 
 
@@ -50,9 +52,20 @@ export default function PrivatePage(){
   if( !user?._id) return <></>
   return (
     <>
-      <h1>Goal Page</h1>
+      <h1>Weight Chart</h1>
       <LineChartDisplay graph={graphDisplay}/>
-      <GoalDisplay />
+      <Container fluid className="d-flex align-items-center">
+        <Row className="justify-content-evenly">
+          <Col xs={6}>
+            <GoalDisplay />
+          </Col>
+        </Row>
+        <Row className="justify-content-evenly">
+          <Col xs={6}>
+            <WorkoutDisplay />
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

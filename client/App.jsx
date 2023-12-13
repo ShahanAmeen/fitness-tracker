@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppProvider from './utils/AppProvider';
-import { Header, ProtectedRoute } from './components';
+import { Header, ProtectedRoute, WorkoutForm, GoalForm } from './components';
 import { HomePage, AuthPage, Logout, PrivatePage } from './pages/'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,6 +18,18 @@ export default function App(){
             <Route path="/private" element={
               <ProtectedRoute>
                 <PrivatePage />
+              </ProtectedRoute>
+            }/>
+
+            <Route path="/workoutform" element={
+              <ProtectedRoute>
+                <WorkoutForm />
+              </ProtectedRoute>
+            }/>
+
+            <Route path="/goalform" element={
+              <ProtectedRoute>
+                <GoalForm />
               </ProtectedRoute>
             }/>
 

@@ -24,7 +24,7 @@ export default function WorkoutForm() {
       if( response.result === "success" ){
         // "/private" is our "profile" at the moment
         // alternatively, instead of the window.location.href method, we can set up a useEffect to trigger a reload of the rendering of the component
-        window.location.href = "/private"
+        //window.location.href = "/private"
       }
     } catch(err){
       console.log(err.message)

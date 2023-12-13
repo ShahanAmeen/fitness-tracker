@@ -1,4 +1,6 @@
-import { useEffect, useState, useContext } from "react"
+// This page handles the profile tab of the site, rendering out the LineChart, GoalDisplay, and WorkoutDisplay components
+
+import { useEffect, useState } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 import LineChartDisplay from '../components/LineChart'
 import GoalDisplay from "../components/GoalDisplay";
@@ -10,24 +12,8 @@ import {Container, Row, Col} from "react-bootstrap";
 export default function PrivatePage(){
 
   const {user} = useAppCtx();
-
-  const [goalDisplay, setGoalDisplay] = useState([])
   
   const [graphDisplay, setGraphDisplay] = useState([])
-
-  async function getGoals(){
-
-    try {
-      const query = await fetch(`api/users/${user?._id}/goals`)
-      const response = await query.json()
-      if( response.result === "success" ){
-        console.log(response.payload)
-        setGoalDisplay(response.payload)
-      }
-    } catch(err){
-      console.log(err.message)
-    }
-  }
 
   async function getWorkouts(){
 
@@ -43,7 +29,6 @@ export default function PrivatePage(){
   }
 
   useEffect(() => {
-    getGoals()
     getWorkouts()
   },[user._id])
 

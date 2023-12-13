@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+// This page handles our signup and login sections; small changes were made from the boilerplate
+
+
 import Auth from "../components/Auth"
 import Signup from "../components/Signup"
 

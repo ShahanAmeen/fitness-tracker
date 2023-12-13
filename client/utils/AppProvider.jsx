@@ -1,3 +1,5 @@
+// This util file surrounds the overall application and passes down Context to allow the children to verify users on the various pages
+
 import Cookie from "js-cookie"
 import { createContext, useContext, useEffect, useState } from "react"
 

@@ -1,3 +1,5 @@
+// This component handles displaying the workouts associated with the logged-in user on the profile page
+
 import {useState, useEffect} from "react"
 import { useAppCtx } from "../utils/AppProvider";
 
@@ -16,12 +18,8 @@ function WorkoutPage(){
     })
     .then(response => response.json())
     .then(data =>{
-      console.log(data.payload)
       setWorkouts(data.payload)
     })
-  
-    
-
   }
 
   useEffect(()=>{

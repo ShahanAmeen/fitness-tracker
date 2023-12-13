@@ -1,3 +1,5 @@
+// This component is the header that shows up across all pages, with conditional logic determining which tabs the user has access to (depending on whether they are logged-in or not)
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -17,6 +19,10 @@ export default function Header() {
             
             { user?._id !== undefined && (
               <Nav.Link href="/profile">Profile</Nav.Link>
+            )}
+
+            { user?._id !== undefined && (
+              <Nav.Link href="/calc">BMI Calc</Nav.Link>
             )}
 
             { user?._id !== undefined && (

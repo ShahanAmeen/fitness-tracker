@@ -1,3 +1,5 @@
+// This component handles the rendering on the homepage, with conditional logic dictating what logged-in users see versus what a non-logged-in user sees
+
 import { Container, Row, Col } from 'react-bootstrap';
 import { useAppCtx } from "../utils/AppProvider";
 import "bootstrap/dist/css/bootstrap.css";

@@ -1,6 +1,10 @@
+// This component is responsible for displaying the recharts package graph on the profile page. Conditional logic is used in the return statement to prevent it from rendering a blank graph if the user has no workout information.
+
+// Future time outside of the cohort will be spent improving this aspect of the website
+
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { useAppCtx } from "../utils/AppProvider";
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState} from "react"
 
 export default function LineChartDisplay(props) {
 
@@ -32,7 +36,6 @@ export default function LineChartDisplay(props) {
     renderData()
   },[props])
 
-  // const dataTest = [{name: 'Page A', uv: 148, pv: 2400, amt: 2400}, {name: 'Page B', uv: 140, pv: 2400, amt: 2400}, {name: 'Page C', uv: 142, pv: 2400, amt: 2400}];
 
   if( !props?.graph ) return <><p>waiting for info...</p></>
   if( data.length===0 ){

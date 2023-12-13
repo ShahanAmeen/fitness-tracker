@@ -1,4 +1,6 @@
-import { useEffect, useState, createContext, useContext } from "react"
+// This component handles the signup form rendered on the auth page
+
+import { useEffect, useState } from "react"
 import { useAppCtx } from "../utils/AppProvider"
 
 
@@ -12,7 +14,7 @@ export default function Auth(){
     setUserData({...userData, [e.target.name]: e.target.value })
   }
 
-  // need to make sure no fields are blank when submitting form (add checks later)
+
   async function handleFormSubmit(e){
     e.preventDefault()
     const finalPath = `/api/users`
@@ -21,7 +23,6 @@ export default function Auth(){
     setUserData({...userData, bmi: calcBMI})    
 
     try {
-      console.log(userData)
       const query = await fetch(finalPath, {
         method: "POST",
         body: JSON.stringify(userData),
@@ -33,9 +34,7 @@ export default function Auth(){
       setUserData(response.payload)
       console.log(response)
       if( response.result === "success" ){
-        // clarify what the homepage or '/' is later with group
         window.location.href = "/"
-        console.log('success')
       }
     } catch(err){
       console.log(err.message)
@@ -93,7 +92,6 @@ export default function Auth(){
         </div>
       </form>
 
-      {/* <a href='/login' class='button-style'>Already signed-up? Log in here</a> */}
     </div>
   )
 

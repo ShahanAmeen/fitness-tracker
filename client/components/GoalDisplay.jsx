@@ -1,8 +1,7 @@
+// This component is responsible for rendering all the goals associated with the logged-in user, visible on the profile page
+
 import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppProvider";
-// import Card from 'react-bootstrap/Card';
-// import ListGroup from 'react-bootstrap/ListGroup';
-
 
 
 export default function GoalDisplay() {
@@ -23,15 +22,6 @@ export default function GoalDisplay() {
       console.log(err.message)
     }
   }
-
-  // async function checkData(){
-  //   if (props.goals.length !== 0){
-  //     console.log(`moving data`)
-  //     console.log(props.goals)
-  //     await moveData()
-
-  //   }
-  // }
   
   useEffect(() => {
     getGoals()

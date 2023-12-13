@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 
 export default function WorkoutForm() {
 
   const {user} = useAppCtx();
 
-  const [newWorkout, setNewWorkout] = useState({exerciseType: '', caloriesBurnt: 0, afterWorkoutWeight: 0, userID: user._id})
+  const [newWorkout, setNewWorkout] = useState({exerciseType: '', caloriesBurnt: 0, afterWorkoutWeight: 0, userID: ''})
 
   // will need to add validators at some point (unless MVP gets dicey)
   async function createWorkout(event){
@@ -24,7 +24,7 @@ export default function WorkoutForm() {
       if( response.result === "success" ){
         // "/private" is our "profile" at the moment
         // alternatively, instead of the window.location.href method, we can set up a useEffect to trigger a reload of the rendering of the component
-        //window.location.href = "/private"
+        window.location.href = "/private"
       }
     } catch(err){
       console.log(err.message)
@@ -34,6 +34,12 @@ export default function WorkoutForm() {
   function handleInputChange(event){
     setNewWorkout({...newWorkout, [event.target.name]: event.target.value})
   }
+
+  useEffect(() => {
+    const editWorkout = {...newWorkout, userID: user._id}
+    setNewWorkout(editWorkout)
+    console.log(`user hit`)
+  },[user._id])
 
   if( !user?._id ) return <></>
   return(

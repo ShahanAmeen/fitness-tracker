@@ -16,7 +16,10 @@ export default function Header() {
           <Nav className="me-auto">
             
             { user?._id !== undefined && (
+              <div>
               <Nav.Link href="/private">Private Page</Nav.Link>
+               <Nav.Link href="/workoutdisplay">Workouts</Nav.Link>
+               </div>
             )}
 
             { user?._id !== undefined ? (

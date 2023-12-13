@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 
 export default function GoalForm() {
 
   const {user} = useAppCtx();
 
-  const [newGoal, setNewGoal] = useState({weightLoss: 0, weightGain: 0, bmi: 0, totalCalorieGoal: 0, userID: user._id})
+  const [newGoal, setNewGoal] = useState({weightLoss: 0, weightGain: 0, bmi: 0, totalCalorieGoal: 0, userID: ''})
 
   // will need to add validators at some point (unless MVP gets dicey)
   async function createGoal(event){
@@ -34,6 +34,12 @@ export default function GoalForm() {
   function handleInputChange(event){
     setNewGoal({...newGoal, [event.target.name]: event.target.value})
   }
+
+  useEffect(() => {
+    const editGoal = {...newGoal, userID: user._id}
+    setNewGoal(editGoal)
+    console.log(`user hit`)
+  },[user._id])
 
   if( !user?._id ) return <></>
   return(

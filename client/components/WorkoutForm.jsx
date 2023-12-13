@@ -3,7 +3,7 @@ import { useAppCtx } from "../utils/AppProvider";
 
 export default function WorkoutForm() {
 
-  const {user} = useAppCtx;
+  const {user} = useAppCtx();
 
   const [newWorkout, setNewWorkout] = useState({exerciseType: '', caloriesBurnt: 0, afterWorkoutWeight: 0, userID: user._id})
 
@@ -35,6 +35,7 @@ export default function WorkoutForm() {
     setNewWorkout({...newWorkout, [event.target.name]: event.target.value})
   }
 
+  if( !user?._id ) return <></>
   return(
     <>
     <form onSubmit={createWorkout}>

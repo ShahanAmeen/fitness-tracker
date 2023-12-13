@@ -3,7 +3,7 @@ import { useAppCtx } from "../utils/AppProvider";
 
 export default function GoalForm() {
 
-  const {user} = useAppCtx;
+  const {user} = useAppCtx();
 
   const [newGoal, setNewGoal] = useState({weightLoss: 0, weightGain: 0, bmi: 0, totalCalorieGoal: 0, userID: user._id})
 
@@ -35,6 +35,7 @@ export default function GoalForm() {
     setNewGoal({...newGoal, [event.target.name]: event.target.value})
   }
 
+  if( !user?._id ) return <></>
   return(
     <>
     <form onSubmit={createGoal}>

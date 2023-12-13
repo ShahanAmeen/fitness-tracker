@@ -5,7 +5,8 @@ export default function HomePage(){
 
   const {user} = useAppCtx();
 
-  if( !user?._id ) return <></>
+  if( !user?._id ) return <><p>testing</p></>
+
   return (
     <>
       <h1>Home Page</h1>

@@ -57,7 +57,7 @@ export default function Auth({usage="signup"}){
             </div>
           </div>
 
-          <button className="mt-2">Submit Info</button>
+          <button className="mt-2">Come on in!</button>
         </div>
       </form>
     </div>

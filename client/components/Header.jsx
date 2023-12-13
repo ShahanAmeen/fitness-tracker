@@ -7,7 +7,6 @@ import { useAppCtx } from "../utils/AppProvider"
 export default function Header() {
   const { user } = useAppCtx()
 
-  if( !user._id ) return <></>
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>

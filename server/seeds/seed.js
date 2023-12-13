@@ -110,7 +110,7 @@ const workouts =
   afterWorkoutWeight:181,
 },
 {
-  exerciseType: "sqaut",
+  exerciseType: "squat",
   caloriesBurnt: 150,
   afterWorkoutWeight: 200,
 },
@@ -120,7 +120,7 @@ const workouts =
   afterWorkoutWeight: 202,
 },
   {
-  exerciseType: "3mile-tredmill",
+  exerciseType: "3mile-treadmill",
   caloriesBurnt: 398,
   afterWorkoutWeight: 170,
 

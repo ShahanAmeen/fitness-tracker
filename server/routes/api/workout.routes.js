@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 // Import any controllers needed here
 const { getAllWorkouts, getWorkoutById, createWorkout, updateWorkoutById, deleteWorkoutById } = require('../../controllers/workout.controller');
+// localhost:5173/api/workouts
 
 // Declare the routes that point to the controllers above
 router.get("/", async (req, res) => {

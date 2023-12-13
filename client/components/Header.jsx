@@ -22,6 +22,14 @@ export default function Header() {
                </div>
             )}
 
+            { user?._id !== undefined && (
+              <Nav.Link href="/workoutform">Add a Workout</Nav.Link>
+            )}
+
+            { user?._id !== undefined && (
+              <Nav.Link href="/goalform">Add a Goal</Nav.Link>
+            )}
+
             { user?._id !== undefined ? (
               <Nav.Link href="/logout">Logout</Nav.Link>
             ):(

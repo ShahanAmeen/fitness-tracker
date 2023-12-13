@@ -1,16 +1,22 @@
 
 import { useAppCtx } from "../utils/AppProvider";
+import "bootstrap/dist/css/bootstrap.css";
 
-export default function HomePage(){
+export default function HomePage() {
 
-  const {user} = useAppCtx();
+  const { user } = useAppCtx();
 
-  if( !user?._id ) return <></>
+  if (!user?._id) {
+    return (
+      <>
+        <h1 className="text-center">Hey there!</h1>
+        <p>Thanks for stopping by to enjoy the scenery and, perhaps, use this wonderful application made entirely for working out, making goals, and check how you're doing along the way!</p>
+      </>
+    )
+  }
   return (
     <>
-      <h1>Home Page</h1>
-      <p>The home page can be accessed by everyone.</p>
-      <p>The user is: {user.email} right here</p>
+      <h1 className="text-center">Welcome back, {user.firstname}!</h1>
     </>
   )
 }

@@ -1,3 +1,5 @@
+// This component handles the workout form tab, which allows the user to add a new workout
+
 import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 
@@ -7,7 +9,6 @@ export default function WorkoutForm() {
 
   const [newWorkout, setNewWorkout] = useState({exerciseType: '', caloriesBurnt: 0, afterWorkoutWeight: 0, userID: ''})
 
-  // will need to add validators at some point (unless MVP gets dicey)
   async function createWorkout(event){
     event.preventDefault()
 
@@ -20,10 +21,7 @@ export default function WorkoutForm() {
         }
       })
       const response = await query.json()
-      console.log(response)
       if( response.result === "success" ){
-        // "/private" is our "profile" at the moment
-        // alternatively, instead of the window.location.href method, we can set up a useEffect to trigger a reload of the rendering of the component
         window.location.href = "/profile"
       }
     } catch(err){
@@ -38,7 +36,6 @@ export default function WorkoutForm() {
   useEffect(() => {
     const editWorkout = {...newWorkout, userID: user._id}
     setNewWorkout(editWorkout)
-    console.log(`user hit`)
   },[user._id])
 
   if( !user?._id ) return <></>

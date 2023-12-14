@@ -1,3 +1,5 @@
+// This model is used for our Goal data
+
 const mongoose = require('mongoose');
 
 

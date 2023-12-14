@@ -1,3 +1,5 @@
+// This component is used to double-check if a user is allowed access to a certain route. It was largely untouched from the boilerplate
+
 import { Route, Navigate } from "react-router-dom"
 import { useAppCtx } from "../utils/AppProvider";
 

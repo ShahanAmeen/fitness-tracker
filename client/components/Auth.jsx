@@ -1,3 +1,5 @@
+// largely untouched from the boilerplate, only handles the login part of our signup/login page
+
 import { useEffect, useState } from "react"
 import { useAppCtx } from "../utils/AppProvider"
 

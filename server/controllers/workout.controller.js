@@ -1,3 +1,5 @@
+// This file handles the functions used in our workout routes
+
 const { Workout } = require('../models');
 const Model = Workout;
 

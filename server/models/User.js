@@ -1,3 +1,5 @@
+// This model is used for our User data
+
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt")
 

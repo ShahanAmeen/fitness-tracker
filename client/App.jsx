@@ -1,9 +1,11 @@
+// This file handles the overall display and routing of the entire application; note that there were plans to add a background image to each page, but was put on hold for successfully deploying the MVP in a timely manner
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppProvider from './utils/AppProvider';
-import { Header, ProtectedRoute, WorkoutForm, GoalForm } from './components';
+import { Header, ProtectedRoute, WorkoutForm, GoalForm, BMICalc } from './components';
 import { HomePage, AuthPage, Logout, PrivatePage } from './pages/'
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import weights from './img/weights.jpg';//
+//import weights from './img/weights.jpg';// 
 export default function App() {
 
   return (
@@ -34,6 +36,12 @@ export default function App() {
             <Route path="/goalform" element={
               <ProtectedRoute>
                 <GoalForm />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/calc" element={
+              <ProtectedRoute>
+                <BMICalc />
               </ProtectedRoute>
             } />
 

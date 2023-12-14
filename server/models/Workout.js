@@ -1,3 +1,5 @@
+// This model is used for our Workout data
+
 const mongoose = require('mongoose');
 
 

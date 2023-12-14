@@ -1,3 +1,5 @@
+// This file handles the functions necessary for our user routes; of particular note is our functions that grab all the goals and workouts of a particular user
+
 const { User, Workout, Goal } = require('../models');
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
@@ -6,7 +8,6 @@ require("dotenv").config();
 const Model = User; 
 
   async function verifyUser(req){
-    console.log('we hit verifyUser')
     const cookie = req.cookies["auth-cookie"]
     if( !cookie ) return false 
 
@@ -30,13 +31,11 @@ async function authenticate(data){
     throw new Error(err)
   }
 
-  console.log(user)
   if(!user) throw new Error("No user found")
 
   let userIsOk = false
   try {
     userIsOk = await bcrypt.compare( data.password, user.password )
-    console.log(userIsOk)
   } catch(err){
     console.log(err)
     throw new Error(err)

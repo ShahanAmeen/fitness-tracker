@@ -1,3 +1,5 @@
+// This component handles the goal form tab, which takes in information and creates a new goal object, before re-routing the user back to profile
+
 import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppProvider";
 
@@ -7,7 +9,6 @@ export default function GoalForm() {
 
   const [newGoal, setNewGoal] = useState({weightLoss: 0, weightGain: 0, bmi: 0, totalCalorieGoal: 0, userID: ''})
 
-  // will need to add validators at some point (unless MVP gets dicey)
   async function createGoal(event){
     event.preventDefault()
 
@@ -20,10 +21,7 @@ export default function GoalForm() {
         }
       })
       const response = await query.json()
-      console.log(response)
       if( response.result === "success" ){
-        // "/private" is our "profile" at the moment
-        // alternatively, instead of the window.location.href method, we can set up a useEffect to trigger a reload of the rendering of the component
         window.location.href = "/profile"
       }
     } catch(err){
@@ -38,7 +36,6 @@ export default function GoalForm() {
   useEffect(() => {
     const editGoal = {...newGoal, userID: user._id}
     setNewGoal(editGoal)
-    console.log(`user hit`)
   },[user._id])
 
   if( !user?._id ) return <></>
